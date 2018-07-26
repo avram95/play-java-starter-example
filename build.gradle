@@ -24,12 +24,12 @@ model {
 dependencies {
     play "com.typesafe.play:play-guice_$scalaVersion:$playVersion"
     play "com.typesafe.play:play-logback_$scalaVersion:$playVersion"
+    play "com.typesafe.play:play-java-jpa_$scalaVersion:$playVersion"
     play "com.h2database:h2:1.4.197"
+    play "org.hibernate:hibernate-core:5.2.5.Final"
 
     playTest "org.assertj:assertj-core:3.6.2"
     playTest "org.awaitility:awaitility:2.0.0"
-    compile 'org.junit.jupiter:junit-jupiter-api'
-    compile 'junit:junit:4.12'
 }
 
 repositories {
