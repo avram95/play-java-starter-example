@@ -28,6 +28,8 @@ dependencies {
 
     playTest "org.assertj:assertj-core:3.6.2"
     playTest "org.awaitility:awaitility:2.0.0"
+    compile 'org.junit.jupiter:junit-jupiter-api'
+    compile 'junit:junit:4.12'
 }
 
 repositories {
