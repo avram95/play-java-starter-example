@@ -1,5 +1,7 @@
 package entity;
 
+import play.data.format.Formats;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -10,7 +12,7 @@ import java.util.Date;
 public class Smartphone {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "brand", length = 255)
@@ -23,7 +25,8 @@ public class Smartphone {
     private String article;
 
     @Column(name = "date")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
+    @Formats.DateTime(pattern = "yyyy-MM-dd")
     private Date releaseDate;
 
 
@@ -72,6 +75,10 @@ public class Smartphone {
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     @Override

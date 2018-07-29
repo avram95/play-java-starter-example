@@ -1,0 +1,61 @@
+
+@import entity.Smartphone
+
+@(title : String, isEdit : Boolean, smartphone: Smartphone)
+
+@set(value:String, name:String) = {
+    <input class="form-control" value="@value" type="text" name="@name" placeholder="Brand">
+}
+    @main("CRUD") {
+    <p></p>
+    <h2>@title</h2>
+    <p></p>
+    @if(isEdit) {
+        <form method="POST" action="@routes.ProductController.editProduct(smartphone.getId)">
+        } else {
+        <form method="POST" action="@routes.ProductController.addProduct">
+        }
+    @helper.CSRF.formField
+
+    <div class="form-group">
+        <label for="brand">Brand:</label>
+        @if(smartphone == null) {
+            @set("", "brand")
+            } else {
+            @set(smartphone.getBrand(), "brand")
+            }
+    </div>
+    <p></p>
+    <div class="form-group">
+        <label for="model">Model:</label>
+        @if(smartphone == null) {
+            @set("", "model")
+        } else {
+            @set(smartphone.getModel(), "model")
+        }
+    </div>
+    <p></p>
+    <div class="form-group">
+        <label for="article">Article:</label>
+        @if(smartphone == null) {
+            @set("", "article")
+        } else {
+            @set(smartphone.getArticle(), "article")
+        }
+    </div>
+    <p></p>
+    <div class="form-group">
+        <label for="date">Release date:</label>
+        @if(smartphone == null) {
+            <input type="date" class="form-control" name="date">
+        } else {
+            <input type="date" class="form-control" value="@smartphone.getReleaseDate()" name="date">
+        }
+    </div>
+    <p></p>
+    <div class="form-group right-container" >
+        <input type="submit" value="Save" class="btn success">
+    </div>
+    </form>
+</div>
+    }

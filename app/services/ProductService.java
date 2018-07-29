@@ -1,23 +1,17 @@
-package crud;
+package services;
 
 
 import entity.Smartphone;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class ProductService {
 
-    private EntityManager em;
+    private EntityManager em = Persistence.createEntityManagerFactory("defaultPersistenceUnit").createEntityManager();
 
-    @PersistenceContext(unitName="defaultPersistenceUnit")
-    private EntityManagerFactory emf;
-
-    public ProductService()
-    {
-        emf = Persistence.createEntityManagerFactory("defaultPersistenceUnit");
-        em = emf.createEntityManager();
-    }
     public Smartphone add(Smartphone smartphone){
         em.getTransaction().begin();
         Smartphone smartphoneFromDB = em.merge(smartphone);
@@ -41,10 +35,10 @@ public class ProductService {
         em.getTransaction().commit();
     }
 
-    public List<Smartphone> getAll(){
+  /*  public List<Smartphone> getAll(){
         TypedQuery<Smartphone> namedQuery = em.createNamedQuery("Smartphone.getAll", Smartphone.class);
         return namedQuery.getResultList();
-    }
+    }*/
 
 
 }

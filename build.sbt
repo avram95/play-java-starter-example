@@ -10,15 +10,15 @@ crossScalaVersions := Seq("2.11.12", "2.12.4")
 
 libraryDependencies += guice
 
+// Test Database
 libraryDependencies += "com.h2database" % "h2" % "1.4.197"
 
 libraryDependencies ++= Seq(
-  javaJpa.exclude("org.hibernate.javax.persistence", "hibernate-jpa-2.0-api"),
-  "org.hibernate" % "hibernate-entitymanager" % "4.3.8.Final",
-  javaJdbc,
-  javaWs,
-  "mysql" % "mysql-connector-java" % "5.1.25",
+  javaJpa.exclude("org.hibernate.javax.persistence", "hibernate-jpa-2.1-api"),
+  "org.hibernate" % "hibernate-entitymanager" % "5.1.8.Final",
+  "mysql" % "mysql-connector-java" % "5.1.44",
 )
+
 // Testing libraries for dealing with CompletionStage...
 libraryDependencies += "org.assertj" % "assertj-core" % "3.6.2" % Test
 libraryDependencies += "org.awaitility" % "awaitility" % "2.0.0" % Test

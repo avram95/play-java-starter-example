@@ -1,0 +1,49 @@
+@*
+ * This template takes a single argument, a String containing a
+ * message to display.
+*@
+
+@import entity.Smartphone
+
+@import java.util
+
+@(smartphones: util.List[Smartphone])
+
+    <script type='text/javascript' src='@routes.Assets.versioned("javascripts/index.js")'></script>
+
+    <ul id="smartphones"></ul>
+    <table class="zebra-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Release date</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+
+    @for(smartphone <- smartphones){
+        <tr>
+            <td>@smartphone.getId()</td>
+            <td>@smartphone.getBrand()</td>
+            <td>@smartphone.getModel()</td>
+            <td>@smartphone.getReleaseDate().format("dd MMM yyyy")</td>
+            <td>
+                <form method="POST" action="@routes.ProductController.viewEdit(smartphone.getId())">
+                    @helper.CSRF.formField
+                <input type="submit" value="Edit" class="btn primary">
+                </form>
+            </td>
+            <td>
+                <form method="POST" action="@routes.ProductController.deleteProduct(smartphone.getId())">
+                @helper.CSRF.formField
+                <input type="submit" value="Delete" class="btn danger">
+            </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+    </table>
